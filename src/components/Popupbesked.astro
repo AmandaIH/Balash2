@@ -1,0 +1,69 @@
+<div id="popup-besked" class="hidden">
+<div class="besked-content">
+<button class="close-besked" aria-label="Close message">&#215</button>
+<h2>FÅ <img src="/logo/logo_sort.svg" alt="logo" class="logo"> TIL BORDET</h2>
+<p>Nytårsmenuer 2024</p>
+<p>Klik <a href="/services/">her</a> for at komme ind og se vores 3 menuer samt vinmenu</p>
+<img src="/logo/illustration.webp" alt="Hånd" class="illustration">
+</div>
+</div>
+
+<script>
+const message = document.getElementById('popup-besked');
+const closeMessage = document.querySelector('.close-besked');
+
+document.addEventListener('DOMContentLoaded', () => {
+    message?.classList.remove('hidden');
+})
+
+closeMessage?.addEventListener('click', toggleMessage);
+
+function toggleMessage() {
+    message?.classList.toggle('hidden');
+}
+</script>
+
+<style>
+#popup-besked {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 15;
+width: fit-content;
+}
+.besked-content {
+    background-color: white;
+    width: 90vw;
+    max-width: 700px;
+    padding: 2rem;
+    font-family: "Roboto Mono", monospace;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+}
+.close-besked {
+    place-self: end;
+    border: none;
+    background-color: transparent;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+.logo {
+max-width: 6rem;
+padding-left: 2%;
+padding-right: 2%;
+}
+.illustration {
+max-width: 10rem;
+justify-content: center;
+}
+h2 {
+    display: flex;
+    flex-direction: row;
+}
+.hidden {
+    display: none;
+}
+</style>

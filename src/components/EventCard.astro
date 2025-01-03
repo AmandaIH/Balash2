@@ -1,0 +1,250 @@
+---
+
+const {data} = Astro.props;
+// @ts-nocheck
+---
+<article>
+    <div class="image-container">
+    <img src=`/img/${data.img}` alt={data.place}>    
+    <div class="hover_info"> 
+        <h2 class="overskrift">{data.overskrift}</h2>
+        <p>{data.hover}</p>
+    </div>
+    </div>
+    
+    <header>
+        <div class="header_text">
+        <h3>{data.place}</h3>
+        <p>{data.date}</p>
+        </div>
+        <button class="hover_button">
+            <span class="hover_text">LÆS MERE</span>
+        </button>
+       
+    </header>
+</article>
+<style>
+    body {
+    background-color: #fcfcfc;
+    }
+    article {
+    position: relative;
+    display: inline-block;
+    }
+    .image-container {
+    position: relative;
+    overflow: hidden;
+    }
+    img {
+    width: 100%;
+    display: block;
+    position: relative;
+    }
+    .hover_info {
+    display: none; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ECEDEF;
+    color: black;
+    font-size: 14px;
+    align-items: center;
+    padding: 5px;
+    justify-content: center;
+    text-align: left;
+    z-index: 1;
+    pointer-events: none;
+    flex-direction: column;
+    }
+    header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    }
+    .header_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    }
+    .hover_button {
+    display: none; 
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    }
+    @media (min-width: 800px) and (max-width: 1000px){
+    h3 {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 11px;
+    }
+    p {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 11px;
+    }
+    .overskrift{
+    color: black;
+    font-size: 11px;
+    text-align: center;
+    z-index: 1; 
+    margin-bottom: 10px;
+}
+    }
+    @media (min-width: 1001px) and (max-width: 1200px){
+    h3 {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 16px;
+    }
+    p {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 13px;
+    }
+    .overskrift{
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    z-index: 1; 
+    margin-bottom: 10px;
+}
+    }
+    @media (min-width: 1201px) {
+    h3 {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 20px;
+    }
+    p {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 15px;
+    }
+    .overskrift{
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    z-index: 1; 
+    margin-bottom: 10px;
+}
+    }
+    @media (min-width: 800px) {
+    article:hover .hover_info {
+    display: flex; 
+    pointer-events: auto;
+}
+    .hover-button {
+    display: none; 
+    }
+    .hover_info {
+    display: none; 
+    }
+    
+    }
+    @media (min-width: 501px) and (max-width: 594px) {
+    .hover_button {
+    display: none; 
+    }
+    h3 {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 12px;
+    }
+    p {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 11px;
+    }   
+    .overskrift{
+    text-align: center;
+    font-size: 12px;
+    }
+    .hover_info{
+    display: none;
+    }
+    .image-container:hover .hover_info {
+        display: flex;
+    }
+    }
+    @media (min-width: 595px) and (max-width: 799px) { 
+    .hover_button {
+    display: none; 
+    }
+    h3 {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 15px;
+    }
+    p {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 13px;
+    } 
+    .hover_info{
+    display: none;
+    }
+    .image-container:hover .hover_info {
+        display: flex;
+    }
+    .overskrift{
+    text-align: center;
+    }
+}
+    @media (max-width: 500px) {
+    .hover_button {
+    display: block; 
+    }
+    h3 {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 10px;
+    }
+    p {
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-size: 9px;
+    } 
+    .overskrift {
+    font-size: 10px;
+    text-align: center;
+    }
+    .hover_info {
+    display: none;
+    }
+    .image-container:hover .hover_info {
+    display: none; 
+    }
+    }
+</style>
+<script>
+
+document.querySelectorAll("article").forEach((article) => {
+    const hoverInfo = article.querySelector(".hover_info")! as HTMLElement;
+    const hoverButton = article.querySelector(".hover_button")!;
+    const hoverText = hoverButton.querySelector(".hover_text");
+
+    hoverButton.addEventListener("click", () => {
+        if (!hoverText) return;
+
+        hoverInfo.classList.toggle("open"); 
+
+        if (hoverInfo.classList.contains("open")) {
+            hoverInfo.style.display = "flex";   
+            hoverText.textContent = "LUK"; 
+        } else {
+            hoverInfo.style.display = "none"; 
+            hoverText.textContent = "LÆS MERE"; 
+        }
+    });
+});
+</script>
